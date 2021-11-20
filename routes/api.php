@@ -3,10 +3,10 @@
 use App\Http\Controllers\Auth\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('user/register',[UserController::class,'register']);
-Route::post('user/login',[UserController::class,'login']);
+Route::post('/user/register',[UserController::class,'register']);
+Route::post('/user/login',[UserController::class,'login']);
 
 Route::group(['middleware'=>'auth:sanctum'],function(){
-    Route::get('user/profile',[UserController::class,'profile']);
-    Route::get('user/logout',[UserController::class,'logout']);
+    Route::get('/user/profile',[UserController::class,'profile']);
+    Route::get('/user/logout',[UserController::class,'logout']);
 });

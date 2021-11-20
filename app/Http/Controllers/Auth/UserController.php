@@ -20,7 +20,7 @@ class UserController extends Controller
 
         User::create($attributes);
 
-        return response('Registered Successfully.',Response::HTTP_OK);
+        return response('Registered Successfully.',Response::HTTP_CREATED);
     }
 
     public function login(Request $request){
