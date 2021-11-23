@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Validation\ValidationException;
 
@@ -18,7 +20,9 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:7'
         ]);
 
-        User::create($attributes);
+        $user = User::create($attributes);
+
+        Mail::to($user->email)->queue(new WelcomeEmail($user->name));
 
         return response('Registered Successfully.',Response::HTTP_CREATED);
     }
