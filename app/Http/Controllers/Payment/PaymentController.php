@@ -18,7 +18,7 @@ class PaymentController extends Controller
     }
     public function payment(Request $request,Event $event){
         $user = auth()->user();
-        $amount = $event->ticket_price * 100;
+        $amount = $event->ticket_price * $request->ticket_count * 100;
 
         $payment = $user->charge($amount,$request->paymentMethod['id']);
 
