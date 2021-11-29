@@ -40,4 +40,12 @@ class Event extends Model
         return $query->where('published_at','<=',Carbon::now());
     }
 
+    public function tickets(){
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function payments(){
+        return $this->morphMany(Payment::class,'product');
+    }
+
 }
