@@ -46,4 +46,12 @@ class User extends Authenticatable
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);
     }
+
+    public function payments(){
+        return $this->hasMany(Payment::class);
+    }
+
+    public function tickets(){
+        return $this->hasMany(Ticket::class);
+    }
 }
